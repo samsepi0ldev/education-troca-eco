@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { ChevronDown } from 'lucide-react'
 
 import { CustomLink } from '@/components/custom-link'
+import { DropdownMenu } from '@/components/dropdown-menu'
 
 export function Header () {
   return (
@@ -25,16 +26,18 @@ export function Header () {
         </CustomLink>
       </div>
       <div>
-        <button className='flex items-center justify-center gap-2 px-4 py-2 text-zinc-700 rounded-lg bg-zinc-100'>
-          <Image
-            className='mr-2 rounded-full'
-            src='https://api.dicebear.com/7.x/avataaars-neutral/jpg?seed=Cali'
-            width={40}
-            height={40}
-            alt='Avatar' />
-          <span className='font-medium'>Peter</span>
-          <ChevronDown strokeWidth={3} size={16} />
-        </button>
+        <DropdownMenu>
+          <button className='flex items-center justify-center gap-2 px-4 py-2 text-zinc-700 rounded-lg bg-zinc-100'>
+            <Image
+              className='mr-2 rounded-full'
+              src='https://api.dicebear.com/7.x/avataaars-neutral/jpg?seed=Cali'
+              width={40}
+              height={40}
+              alt='Avatar' />
+            <span className='font-medium'>Peter</span>
+            <ChevronDown strokeWidth={3} size={16} />
+          </button>
+        </DropdownMenu>
       </div>
     </header>
   )
