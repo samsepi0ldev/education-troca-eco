@@ -24,12 +24,12 @@ export default function Dashboard () {
               </thead>
               <tbody className='text-sm'>
                 {Array.from(({ length: 10 })).map((_,i) => (
-                  <tr className='text-zinc-700 [&>td]:px-5 [&>td]:py-4 [&>td]:border' key={i}>
-                    <td className='border-r-transparent rounded-l-lg text-orange-400'>1ash4</td>
-                    <td className='border-x-transparent'>Lava louca brix</td>
-                    <td className='border-x-transparent'>100</td>
-                    <td className='border-l-transparent rounded-r-lg'>
-                      <span className='w-6 text-xs px-2.5 py-1 flex items-center justify-center bg-green-100 rounded-md text-green-800'>
+                  <tr className='text-zinc-700 hover:bg-violet-500 hover:text-white group [&>td]:px-5 [&>td]:py-4 [&>td]:border transition-colors' key={i}>
+                    <td className='group-hover:border-transparent group-hover:text-white border-r-transparent rounded-l-lg text-orange-400'>1ash4</td>
+                    <td className='group-hover:border-transparent border-x-transparent'>Lava louca brix</td>
+                    <td className='group-hover:border-transparent border-x-transparent'>100</td>
+                    <td className='group-hover:border-transparent border-l-transparent rounded-r-lg'>
+                      <span className='w-6 text-xs px-2.5 py-1 flex items-center justify-center group-hover:bg-white group-hover:text-violet-500 bg-green-100 rounded-md text-green-800'>
                         <Check className='flex-shrink-0' strokeWidth={3} size={14} />
                       </span>
                     </td>
@@ -49,11 +49,11 @@ export default function Dashboard () {
               </thead>
               <tbody className='text-sm'>
                 {Array.from(({ length: 10 })).map((_,i) => (
-                  <tr className='text-zinc-700 [&>td]:px-5 [&>td]:py-4 [&>td]:border' key={i}>
+                  <tr className='text-zinc-700 hover:bg-violet-500 hover:text-white group [&>td]:px-5 [&>td]:py-4 [&>td]:border transition-colors' key={i}>
                     <td className='border-r-transparent rounded-l-lg'>Lava louca brix</td>
                     <td className='border-x-transparent'>100</td>
                     <td className='border-l-transparent rounded-r-lg'>
-                      <button className='text-md font-semibold text-green-800 px-2 py-1 rounded-lg flex items-center gap-x-2'>
+                      <button className='group-hover:text-white group-hover:hover:bg-white group-hover:hover:text-violet-500 group-hover:transition-colors text-md font-semibold text-green-800 px-2 py-1 rounded-lg flex items-center gap-x-2'>
                         <Sprout />
                         Resgatar
                       </button>
