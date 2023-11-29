@@ -2,7 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { LogIn, Search, UserRound } from 'lucide-react'
 import { getServerSession } from 'next-auth'
-import { authOptions } from './api/auth/[...nextauth]/route'
+
+import { authOptions } from '@/utils/auth-options'
 
 export default async function Home() {
   const session = await getServerSession(authOptions)
