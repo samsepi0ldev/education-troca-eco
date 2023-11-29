@@ -2,6 +2,7 @@
 
 import * as Dropdown from '@radix-ui/react-dropdown-menu'
 import { Cog, LogOut } from 'lucide-react'
+import { signOut } from 'next-auth/react'
 import { ReactNode } from 'react'
 
 interface DropdownMenuProps {
@@ -23,7 +24,7 @@ export function DropdownMenu ({ children }: DropdownMenuProps) {
             <Cog size={16} />
             Configuração
           </button>
-          <button className='w-full flex items-center justify-start gap-2 hover:bg-white text-zinc-800 px-4 py-2 pl-6 rounded text-sm'>
+          <button onClick={() => signOut()} className='w-full flex items-center justify-start gap-2 hover:bg-white text-zinc-800 px-4 py-2 pl-6 rounded text-sm'>
             <LogOut size={16} />
             Sair
           </button>

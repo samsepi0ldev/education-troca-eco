@@ -1,9 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { LogIn, Search, UserRound } from 'lucide-react'
+import { getServerSession } from 'next-auth'
+import { authOptions } from './api/auth/[...nextauth]/route'
 
-export default function Home() {
-  const session = true
+export default async function Home() {
+  const session = await getServerSession(authOptions)
   return (
     <main>
       <header className='bg-white shadow-md flex items-center justify-between h-16 px-20 uppercase z-20'>
