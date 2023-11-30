@@ -1,4 +1,3 @@
-import { LoginUser } from '@/domain/entities'
 import { Login } from '@/domain/usecases'
 import { FindUserByEmail, TokenGenerator, Decrypt } from '@/data/protocols'
 import { UnauthorizedError } from '@/presentation/errors'
@@ -10,10 +9,13 @@ export class DbLogin implements Login {
     private readonly tokenGenerator: TokenGenerator
   ) {}
 
-  async login ({ email, password }: Login.Input): Promise<LoginUser> {
+  async login ({ email, password }: Login.Input): Promise<Login.Output> {
     const user = await this.findUserByEmail.findByEmail(email)
     if (user !== null) {
+      
+      if (!user.verified) return { verified: false }
       const isValid = await this.decrypt.decrypt(password, user.password)
+
       if (isValid) {
         const { accessToken } = await this.tokenGenerator.generate({
           sub: user.id,

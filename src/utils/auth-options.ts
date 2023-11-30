@@ -16,6 +16,7 @@ export const authOptions: AuthOptions = {
           email: credentials?.email,
           password: credentials?.password
         })
+        if (response.data.verified) return response.data
         if (response.data.user) {
           return response.data
         }

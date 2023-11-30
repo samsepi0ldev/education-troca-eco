@@ -4,6 +4,7 @@ import { LogIn, Search, UserRound } from 'lucide-react'
 import { getServerSession } from 'next-auth'
 
 import { authOptions } from '@/utils/auth-options'
+import logoTrocaEco from '@/assets/logo.png'
 
 export default async function Home() {
   const session = await getServerSession(authOptions)
@@ -11,7 +12,10 @@ export default async function Home() {
     <main>
       <header className='bg-white shadow-md flex items-center justify-between h-16 px-20 uppercase z-20'>
         <div className='flex items-center gap-10 text-zinc-700'>
-          <div className='w-28 h-10 bg-slate-600 block mr-28' />
+          <div className='flex items-center gap-x-4'>
+            <Image src={logoTrocaEco} width={40} height={40} alt='Logo' />
+            <span className='text-zinc-700 font-medium'>TrocaEco</span>
+          </div>
           <a data-active={true} className='data-[active=true]:text-violet-500 data-[active=true]:font-bold rounded hover:bg-zinc-100 px-4 py-2 transition-colors' href='#'>Inicio</a>
           <a className='data-[active=true]:text-violet-500 data-[active=true]:font-bold rounded-md hover:bg-zinc-100 px-4 py-2 transition-colors' href='#about'>Sobre</a>
           <a className='data-[active=true]:text-violet-500 data-[active=true]:font-bold rounded-md hover:bg-zinc-100 px-4 py-2 transition-colors' href='#webinars'>Webinars</a>

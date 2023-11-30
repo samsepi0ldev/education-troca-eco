@@ -9,5 +9,5 @@ export namespace Login {
     email: string
     password: string
   }
-  export type Output = LoginUser
+  export type Output = LoginUser | { verified: boolean }
 }

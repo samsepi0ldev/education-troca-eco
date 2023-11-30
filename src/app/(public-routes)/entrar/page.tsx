@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { FormEvent } from 'react'
+import { FormEvent, useState } from 'react'
 import { signIn } from 'next-auth/react'
 import z from 'zod'
 
@@ -14,8 +14,11 @@ import { useRouter } from 'next/navigation'
 
 export default function Login () {
   const route = useRouter()
+  const [isLoggingIn, setIsLoggingIn] = useState(false)
 
   async function loginHandle (event: FormEvent) {
+    setIsLoggingIn(true)
+
     event.preventDefault()
     const data = Object.fromEntries(new FormData(event.target as HTMLFormElement))
     const parseData = z.object({
@@ -30,13 +33,17 @@ export default function Login () {
         redirect: false
       })
       if (response?.error) {
-        console.log(response)
+        alert('Usuário ou senha errado, talvez sua conta nao esteja verificada!')
+        setIsLoggingIn(false)
         return
       }
       route.replace('/dashboard')
     } catch (error) {
+      setIsLoggingIn(false)
       console.log(error)
-    }  
+    } finally {
+      setIsLoggingIn(false)
+    }
   }
   return (
     <main className='w-full h-screen'>
@@ -52,7 +59,7 @@ export default function Login () {
           <span className='font-medium text-zinc-500 mb-9 mt-3'>Entre com seu email e senha</span>
           <Input text='Email' type='text' name='email' icon='Mail' />
           <Input text='Senha' type='password' name='password' icon='Lock' />
-          <AsyncButton>
+          <AsyncButton isLoading={isLoggingIn}>
             Entrar -&gt;
           </AsyncButton>
           <div className='w-full pt-7 border-t border-zinc-200 mt-8 flex items-center justify-between'>

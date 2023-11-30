@@ -1,13 +1,20 @@
 import Image from 'next/image'
 import { ChevronDown } from 'lucide-react'
+import { getServerSession } from 'next-auth'
 
 import { CustomLink } from '@/components/custom-link'
 import { DropdownMenu } from '@/components/dropdown-menu'
+import logoTrocaEco from '@/assets/logo.png'
+import { authOptions } from '@/utils/auth-options'
 
-export function Header () {
+export async function Header () {
+  const session = await getServerSession(authOptions)
   return (
     <header className='w-full h-32 flex items-center justify-between border-b border-b-zinc-200'>
-      <span>Logo</span>
+      <div className='flex items-center gap-x-4'>
+        <Image src={logoTrocaEco} width={40} height={40} alt='Logo' />
+        <span className='text-zinc-700 font-medium'>TrocaEco</span>
+      </div>
       <div className='flex items-center justify-center gap-5'>
         <CustomLink
           icon='LayoutDashboard'
@@ -34,7 +41,7 @@ export function Header () {
               width={40}
               height={40}
               alt='Avatar' />
-            <span className='font-medium'>Peter</span>
+            <span className='font-medium'>{session?.user.name.split(' ').shift()}</span>
             <ChevronDown strokeWidth={3} size={16} />
           </button>
         </DropdownMenu>

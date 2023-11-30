@@ -1,8 +1,16 @@
 import { Heading } from '@/components/heading'
 import { Navigation } from '@/components/navigation'
+import { api } from '@/lib/api'
 import { Check, Sprout } from 'lucide-react'
 
-export default function Dashboard () {
+interface Product {
+  id: string
+  name: string
+  points: number
+}
+
+export default async function Dashboard () {
+  const response = await api<Product[]>('/products')
   return (
     <div className='pt-5'>
       <Navigation />
@@ -23,11 +31,11 @@ export default function Dashboard () {
                 </tr>
               </thead>
               <tbody className='text-sm'>
-                {Array.from(({ length: 10 })).map((_,i) => (
-                  <tr className='text-zinc-700 hover:bg-violet-500 hover:text-white group [&>td]:px-5 [&>td]:py-4 [&>td]:border transition-colors' key={i}>
-                    <td className='group-hover:border-transparent group-hover:text-white border-r-transparent rounded-l-lg text-orange-400'>1ash4</td>
-                    <td className='group-hover:border-transparent border-x-transparent'>Lava louca brix</td>
-                    <td className='group-hover:border-transparent border-x-transparent'>100</td>
+                {response.data.map(({ id, name, points }) => (
+                  <tr className='text-zinc-700 hover:bg-violet-500 hover:text-white group [&>td]:px-5 [&>td]:py-4 [&>td]:border transition-colors' key={id}>
+                    <td className='group-hover:border-transparent group-hover:text-white border-r-transparent rounded-l-lg text-orange-400'>{id.split('-').shift()}</td>
+                    <td className='group-hover:border-transparent border-x-transparent'>{name}</td>
+                    <td className='group-hover:border-transparent border-x-transparent'>{points}</td>
                     <td className='group-hover:border-transparent border-l-transparent rounded-r-lg'>
                       <span className='w-6 text-xs px-2.5 py-1 flex items-center justify-center group-hover:bg-white group-hover:text-violet-500 bg-green-100 rounded-md text-green-800'>
                         <Check className='flex-shrink-0' strokeWidth={3} size={14} />
